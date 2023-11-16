@@ -1,38 +1,131 @@
-.App {
-  text-align: center;
+:root {
+  --window-header-color: #112D4E;
+  --background-color: #BBE1FA;
+  --window-inner-color: #F9F7F7;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html {
+  font-size: 16px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  background-color: var(--background-color);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#root {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  border-bottom: 2px solid black;
+  padding-bottom: 5px;
+}
+
+h2 {
+  border-bottom: 1px solid black;
+  padding-bottom: 5px;
+}
+
+table {
+  border: 1px solid;
+  margin-bottom: 1rem;
+}
+
+table tr {
+  border: 1px solid;
+}
+
+table td, th {
+  border: 1px solid;
+  padding: 5px;
+}
+
+pre {
+  display: block;
+  background-color: #eee;
+  padding: 1rem;
+}
+
+code {
+  background-color: #eee;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+}
+
+.btn-link {
   color: white;
+  font-weight: lighter;
+  padding: 0;
 }
 
-.App-link {
-  color: #61dafb;
+.btn-link:hover {
+  color: var(--background-color);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.window {
+  resize: horizontal;
+  width: 50vw;
+  margin: 1rem;
+  border: 1px solid black;
 }
+
+.window-header {
+  color: white;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--window-header-color);
+  border-bottom: 1px solid black;
+}
+
+.window-inner {
+  height: 90vh;
+  width: 100%;
+  overflow: auto;
+  padding: 1rem;
+  background-color: var(--window-inner-color);
+}
+
+.editor {
+  overflow: hidden;
+  padding: 0;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.editor textarea {
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  background-color: var(--window-inner-color);
+  outline: 0;
+  overflow: auto;
+}
+
+.window-inner::-webkit-scrollbar-track,
+.editor textarea::-webkit-scrollbar-track {
+	background-color: #F5F5F5;
+}
+
+.window-inner::-webkit-scrollbar,
+.editor textarea::-webkit-scrollbar {
+	width: 0.5rem;
+	background-color: #F5F5F5;
+}
+
+.window-inner::-webkit-scrollbar-thumb,
+.editor textarea::-webkit-scrollbar-thumb {
+	background-color: #aaa;
+}
+
+

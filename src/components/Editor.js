@@ -1,12 +1,16 @@
 import React from "react";
 import { connect } from 'react-redux';
-import { parseMarkdown } from "../actions/parsemdActions";
+import { parseMarkdown, toggleEditor } from "../actions/parsemdActions";
 
 // Define state and dispatch mapping
+const mapStateToProps = (state) => state;
 const mapDispatchToProps = (dispatch) => {
     return {
         submitMarkdownParse: (input) => {
             dispatch(parseMarkdown(input));
+        },
+        submitToggleRequest: () => {
+            dispatch(toggleEditor());
         }
     }
 }
@@ -26,16 +30,17 @@ class Presentational extends React.Component {
         });
         this.props.submitMarkdownParse(e.target.value);
     }
+    toggleEditor() {
+        this.props.submitToggleRequest();
+    }
     render() {
         return (
-            <div className='window'>
+            <div className='editor-window'>
                 <div className='window-header'>
                     <p className="m-0"><i className='fa fa-terminal'></i> Editor</p>
                     <button className='btn btn-link'><i className='fa fa-window-maximize'></i></button>
                 </div>
-                <div className="window-inner editor">
-                    <textarea value={this.state.input} onChange={this.handleChange}></textarea>
-                </div>
+                <textarea value={this.state.input} onChange={this.handleChange}></textarea>
             </div>
         )
     }

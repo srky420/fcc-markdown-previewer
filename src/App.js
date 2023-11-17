@@ -20,7 +20,7 @@ class App extends React.Component {
   componentDidMount() {
     this.setState(state => ({
       ...state,
-      html: marked(state.input)
+      html: marked.parse(state.input, { 'breaks': true })
     }));
   }
 
@@ -28,7 +28,7 @@ class App extends React.Component {
     console.log(e);
     this.setState({
       input: e.target.value,
-      html: marked(e.target.value)
+      html: marked.parse(e.target.value, { 'breaks': true })
     });
   }
 

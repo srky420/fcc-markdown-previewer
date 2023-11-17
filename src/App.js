@@ -1,47 +1,58 @@
 import './App.css';
-import Editor from './components/Editor';
-import Previewer from './components/Previewer';
-import { Provider } from 'react-redux';
-import store from './store';
 import React from 'react';
 import { marked } from 'marked';
-import parse from 'html-react-parser';
+import { initialState } from './initialState';
+import Editor from './components/Editor';
+import Previewer from './components/Previewer';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      input: '',
-      html: ''
+      input: initialState,
+      html: '',
+      active: 'BOTH'
     }
     this.handleChange = this.handleChange.bind(this);
+    this.toggleView = this.toggleView.bind(this);
   }
+
+  componentDidMount() {
+    this.setState(state => ({
+      ...state,
+      html: marked(state.input)
+    }));
+  }
+
   handleChange(e) {
+    console.log(e);
     this.setState({
       input: e.target.value,
-      html: marked(e.target.value).replace('/\n/g', '<br />')
+      html: marked(e.target.value)
     });
-    console.log(this.state.html);
   }
+
+  toggleView(view) {
+    this.setState({
+      ...this.state,
+      active: view
+    });
+  }
+
   render() {
+    // Define styles
+    const styles = {
+      maximize: {
+        minHeight: '90vh',
+      },
+      minimize: {
+        display: 'none'
+      }
+    }
     return (
       <div className='App'>
-        <div className='editor-window'>
-          <div className='window-header'>
-              <p><i className='fa fa-terminal'></i> Editor</p>
-              <button className='btn'><i className='fa fa-window-maximize'></i></button>
-          </div>
-          <textarea id='editor' value={this.state.input} onChange={this.handleChange}></textarea>
-        </div>
-        <div className='preview-window'>
-          <div className='window-header'>
-              <p><i className='fa fa-code'></i> Previewer</p>
-              <button className='btn'><i className='fa fa-window-maximize'></i></button>
-          </div>
-          <div className='preview-inner' id='preview'>
-              { parse(this.state.html) }
-          </div>
-        </div>
+        <Editor handleChange={this.handleChange} input={this.state.input} active={this.state.active} toggleView={this.toggleView} style={styles} />
+        <Previewer html={this.state.html} active={this.state.active} toggleView={this.toggleView} style={styles} />
       </div>
     );
   }

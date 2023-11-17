@@ -60,6 +60,8 @@ body {
   align-items: center;
   justify-content: space-between;
   background-color: var(--window-header-color);
+  box-shadow: 0 0 5px 0 var(--window-header-color);
+  z-index: 0;
 }
 
 .window-header p {
@@ -92,6 +94,7 @@ body {
   min-height: 100px;
   padding: 0 1rem;
   word-wrap: break-word;
+  z-index: 1;
 }
 
 /* Editor window */
@@ -109,18 +112,8 @@ body {
   border: 1px solid black;
   overflow: auto;
   font-size: 0.9rem;
-}
-
-.editor-window textarea:focus {
   box-shadow: 0 0 5px 0 var(--window-header-color);
-}
-
-.maximized {
-  min-height: 100vh;
-}
-
-.minimized {
-  display: none;
+  z-index: 1;
 }
 
 @media screen and (max-width: 760px) {

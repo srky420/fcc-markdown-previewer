@@ -1,43 +1,20 @@
 import React from "react";
-import { connect } from "react-redux";
-import { togglePreviewer } from "../actions/parsemdActions";
-import parse from "html-react-parser";
-
-// Define state mapping
-const mapStateToProps = (state) => state;
-const mapDispatchToProps = (dispatch) => {
-    return {
-        submitToggleRequest: () => {
-            dispatch(togglePreviewer());
-        }
-    }
-}
+import parse from 'html-react-parser';
 
 // Define component
-class Presentational extends React.Component {
-    constructor(props) {
-        super(props);
-        this.togglePreviewer = this.togglePreviewer.bind(this);   
-    }
-    togglePreviewer() {
-        this.props.submitToggleRequest();
-    }
-    render() {
-        return (
-            <div className='preview-window'>
-                <div className='window-header'>
-                    <p className="m-0"><i className='fa fa-code'></i> Previewer</p>
-                    <button className='btn btn-link'><i className='fa fa-window-maximize'></i></button>
-                </div>
-                <div className='html-preview'>
-                    { parse(this.props.output) }
-                </div>
+const Previewer = (props) => {
+    return (
+        <div className='preview-window' style={(props.active === 'EDITOR' && props.style.minimize) || (props.active === 'PREVIEWER' && props.style.maximize) || {}}>
+            <div className='window-header'>
+                <p><i className='fa fa-code'></i> Previewer</p>
+                {props.active === 'BOTH' && <button className='btn' onClick={() => props.toggleView('PREVIEWER')}><i className='fa fa-window-maximize'></i></button>}
+                {props.active === 'PREVIEWER' && <button className='btn' onClick={() => props.toggleView('BOTH')}><i className='fa fa-window-restore'></i></button>}
             </div>
-        );
-    }
+            <div className='preview-inner' id='preview'>
+                { parse(props.html) }
+            </div>
+        </div>
+    )
 }
-
-// Connect presentational component to redux store
-const Previewer = connect(mapStateToProps, mapDispatchToProps)(Presentational);
 
 export default Previewer;

@@ -94,7 +94,7 @@ body {
 
 /* Preview Window */
 .preview-window {
-  margin: 1rem auto;
+  margin: 1rem auto 0 auto;
   width: 750px;
   border: 1px solid black;
   background-color: var(--window-inner-color);
@@ -111,7 +111,7 @@ body {
 /* Editor window */
 .editor-window {
   width: 500px;
-  margin: 1rem auto;
+  margin: 1rem auto 0 auto;
 }
 
 .editor-window textarea {
@@ -126,6 +126,22 @@ body {
   box-shadow: 0 0 5px 0 var(--window-header-color);
   z-index: 1;
   resize: vertical;
+}
+
+/* About */
+.about {
+  text-align: center;
+  background-color: var(--window-header-color);
+  color: white;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid black;
+  box-shadow: 0 0 5px 0 var(--window-header-color);
+}
+
+.about a {
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
 }
 
 @media screen and (max-width: 760px) {

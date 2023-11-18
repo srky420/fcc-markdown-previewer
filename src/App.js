@@ -70,6 +70,7 @@ class App extends React.Component {
     };
     return (
       <div className='App'>
+        <div className='about'>A Markdown Previewer By <a href='https://github.com/srky420/'>Shahrukh</a></div>
         <Editor handleChange={this.handleChange} input={this.state.input} active={this.state.active} toggleView={this.toggleView} style={styles} />
         <Previewer html={this.state.html} active={this.state.active} toggleView={this.toggleView} style={styles} />
       </div>

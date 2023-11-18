@@ -30,11 +30,12 @@ body {
 .preview-inner table {
   border: 1px solid;
   margin: 1rem 0;
+  border-collapse: collapse;
 }
 
 .preview-inner table td, th {
   border: 1px solid;
-  padding: 5px;
+  padding: 0.5rem;
 }
 
 .preview-inner pre {
@@ -51,6 +52,13 @@ body {
 .preview-inner img {
   width: 100%;
   height: 100%;
+}
+
+.preview-inner blockquote {
+  border-left: 3px solid var(--window-header-color);
+  color: var(--window-header-color);
+  padding: 0 0.5rem;
+  margin: 1rem;
 }
 
 /* Window header */
@@ -117,6 +125,7 @@ body {
   font-size: 0.9rem;
   box-shadow: 0 0 5px 0 var(--window-header-color);
   z-index: 1;
+  resize: vertical;
 }
 
 @media screen and (max-width: 760px) {

@@ -1,5 +1,5 @@
 import React from "react";
-import parse from 'html-react-parser';
+import DOMPurify from "dompurify";
 
 // Define component
 const Previewer = (props) => {
@@ -10,9 +10,7 @@ const Previewer = (props) => {
                 {props.active === 'BOTH' && <button className='btn' onClick={() => props.toggleView('PREVIEWER')}><i className='fa fa-window-maximize'></i></button>}
                 {props.active === 'PREVIEWER' && <button className='btn' onClick={() => props.toggleView('BOTH')}><i className='fa fa-window-restore'></i></button>}
             </div>
-            <div className='preview-inner' id='preview'>
-                { parse(props.html) }
-            </div>
+            <div className='preview-inner' id='preview' dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(props.html) }} />
         </div>
     )
 }

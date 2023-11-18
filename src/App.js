@@ -44,11 +44,11 @@ class App extends React.Component {
   }
 
   handleChange(e) {
-    console.log(e);
-    this.setState({
+    this.setState(state => ({
+      ...state,
       input: e.target.value,
-      html: marked.parse(e.target.value, { 'breaks': true })
-    });
+      html: marked.parse(e.target.value)
+    }));
   }
 
   toggleView(view) {
@@ -67,7 +67,7 @@ class App extends React.Component {
       minimize: {
         display: 'none'
       }
-    }
+    };
     return (
       <div className='App'>
         <Editor handleChange={this.handleChange} input={this.state.input} active={this.state.active} toggleView={this.toggleView} style={styles} />

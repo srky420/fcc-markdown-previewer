@@ -21,11 +21,11 @@ function anotherExample(firstLine, lastLine) {
 
 This is **bold** text.
 This is _italic_ text.
-And this is **_both!_** bold and italic text.
+And this is **_both!_**
 You can also ~~cross out text~~.
 
-This is a [link](https://www.freecodecamp.org), and
-> A Block Quote
+This is a [link](https://www.freecodecamp.org), and below is:
+> A Block Quote!
 
 There's also tables:
 
@@ -42,7 +42,7 @@ More Content | More Content | More Content
 
 1. And there are numbered lists too.
 1. Use numbers to create it.
-1. And last but not least, there are embeddeb images as well:
+1. And last but not least, there are embedded images as well:
 
 ![freeCodeCamp Logo](https://cdn.freecodecamp.org/testable-projects-fcc/images/fcc_secondary.svg)
 `;

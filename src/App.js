@@ -1,15 +1,34 @@
 import './App.css';
 import React from 'react';
-import { marked } from 'marked';
-import { initialState } from './initialState';
+import { Marked } from 'marked';
+import { initalInput } from './initialInput';
 import Editor from './components/Editor';
 import Previewer from './components/Previewer';
+import { markedHighlight } from 'marked-highlight';
+import hljs from 'highlight.js';
 
+// Define marked object with highlight js
+const marked = new Marked(
+  markedHighlight({
+    langPrefix: 'hljs language-',
+    highlight(code, lang) {
+      const language = 'javascript';
+      return hljs.highlight(code, { language }).value;
+    }
+  })
+)
+
+// Set breaks to true
+marked.setOptions({
+  breaks: true
+})
+
+// Define app component
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      input: initialState,
+      input: initalInput,
       html: '',
       active: 'BOTH'
     }
@@ -20,7 +39,7 @@ class App extends React.Component {
   componentDidMount() {
     this.setState(state => ({
       ...state,
-      html: marked.parse(state.input, { 'breaks': true })
+      html: marked.parse(state.input)
     }));
   }
 
@@ -33,10 +52,10 @@ class App extends React.Component {
   }
 
   toggleView(view) {
-    this.setState({
-      ...this.state,
+    this.setState((state) => ({
+      ...state,
       active: view
-    });
+    }));
   }
 
   render() {
